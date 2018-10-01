@@ -1,3 +1,3 @@
 # Hacktoberfest '18 Leaderboard
 
-WIP
+Simple react web app to show the progress of users participating in Hacktoberfest 2018
