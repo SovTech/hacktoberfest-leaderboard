@@ -47,6 +47,8 @@ class App extends Component {
   transformPullRequests(data) {
     return data.users
       .map(user => {
+        user.pullRequests = user.pullRequests.filter(pullRequest => pullRequest.repository.name !== "hacktoberfest-leaderboard");
+
         user.stats = {
           open: user.pullRequests.reduce((a, b) => {
             return a + (b.state === "OPEN");
