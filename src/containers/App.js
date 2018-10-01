@@ -5,6 +5,7 @@ import { ApolloProvider } from "react-apollo";
 import { client } from "../apollo";
 import gql from "graphql-tag";
 import Base from "../components/Base";
+import FadeUp from "../components/FadeUp";
 import Leaderboard from "../components/Leaderboard";
 import UserCard from "../components/UserCard";
 import Banner from "../components/Banner";
@@ -74,7 +75,6 @@ class App extends Component {
           <Base>
             <Leaderboard>
               <Banner>
-                <div className="__logo" />
                 <SovtechLogo />
                 <h1>Hacktoberfest 2018 Leaderboard</h1>
               </Banner>
@@ -82,33 +82,36 @@ class App extends Component {
                 {({ loading, error, data }) => {
                   if (loading) return "Loading...";
                   if (error) return `Error! ${error.message}`;
-
                   return (
                     <div>
                       {this.transformPullRequests(data).map((user, i) => (
-                        <UserCard key={i}>
-                          <h1>{user.pullRequests.length ? i + 1 : "-"}</h1>
-                          <div className="__user--detail">
-                            <img src={user.avatarUrl} alt="" />
-                            <h3>{user.login}</h3>
-                          </div>
-                          <div className="__score">
-                            <div className="__label">open</div>
-                            <h2>{user.stats.open}</h2>
-                          </div>
-                          <div className="__score">
-                            <div className="__label">closed</div>
-                            <h2>{user.stats.closed}</h2>
-                          </div>
-                          <div className="__score">
-                            <div className="__label">merged</div>
-                            <h2>{user.stats.merged}</h2>
-                          </div>
-                          <div className="__score">
-                            <div className="__label">total</div>
-                            <h2>{user.pullRequests.length}</h2>
-                          </div>
-                        </UserCard>
+                        <FadeUp style={{ width: "100%" }} delay={i * 100}>
+                          <UserCard key={i}>
+                            <div className="__user--detail">
+                              <h1>{user.pullRequests.length ? i + 1 : "-"}</h1>
+                              <img src={user.avatarUrl} alt="" />
+                              <h3>{user.login}</h3>
+                            </div>
+                            <div className="__score-cont">
+                              <div className="__score">
+                                <div className="__label">open</div>
+                                <h2>{user.stats.open}</h2>
+                              </div>
+                              <div className="__score">
+                                <div className="__label">closed</div>
+                                <h2>{user.stats.closed}</h2>
+                              </div>
+                              <div className="__score">
+                                <div className="__label">merged</div>
+                                <h2>{user.stats.merged}</h2>
+                              </div>
+                              <div className="__score">
+                                <div className="__label">total</div>
+                                <h2>{user.pullRequests.length}</h2>
+                              </div>
+                            </div>
+                          </UserCard>
+                        </FadeUp>
                       ))}
                     </div>
                   );

@@ -12,7 +12,7 @@ export default styled.div`
   align-items: center;
   box-shadow: 2px 2px 0px 0px ${styles.colors.cyan};
   overflow: hidden;
-  margin: 10px 0;
+  margin-bottom: 10px;
   color: ${styles.colors.crimson};
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
@@ -25,8 +25,10 @@ export default styled.div`
   }
 
   img {
-    width: 50px;
+    width: 70px;
     border-radius: 50%;
+    height: 70px;
+    max-width: 100%;
   }
 
   h1 {
@@ -35,13 +37,24 @@ export default styled.div`
   }
 
   .__user--detail {
-    width: 20%;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
     h3 {
-      margin: 0;
+      margin-left: 20px;
       text-transform: lowercase;
       text-shadow: none;
       text-shadow: 2px 2px 0px #01ffff69;
     }
+  }
+
+  .__score-cont {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    flex-direction: row;
   }
 
   .__score {
@@ -75,12 +88,40 @@ export default styled.div`
   }
 
   @media (max-width: 600px) {
+    flex-direction: column;
+
     h1 {
       font-size: 1.2rem;
     }
 
     h3 {
       font-size: 0.8rem;
+    }
+
+    img {
+      width: 50px;
+      border-radius: 50%;
+      height: 50px;
+      max-width: 100%;
+    }
+
+    .__score-cont {
+      display: flex;
+      flex: 1;
+      justify-content: space-between;
+      flex-direction: row;
+      width: 100%;
+      padding-top: 20px;
+    }
+
+    .__user--detail {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      h3 {
+        margin-left: 0;
+      }
     }
 
     .__score {
