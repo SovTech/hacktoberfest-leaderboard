@@ -4,7 +4,7 @@ import styles from "../styles";
 const SovtechLogo = props => {
   const logoStyle = {
     position: "absolute",
-    transform: "translate(-101%, -5%)",
+    transform: "translate(-1%, -5%)",
     zIndex: 0
   };
 
