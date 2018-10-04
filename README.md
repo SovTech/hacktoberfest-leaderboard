@@ -13,3 +13,7 @@ This project requires [Node.js](https://github.com/nodejs/node). Run `npm instal
 ## Contributors
 
 * **Andre Hofmeister** - *Updated README.md with basic information* - [padme-amidala](https://github.com/padme-amidala/)
+
+## Deployment
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/SovTech/hacktoberfest-leaderboard)
