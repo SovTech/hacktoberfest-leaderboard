@@ -1,29 +1,10 @@
+import * as React from 'react';
 import styled from "styled-components";
 import styles from "../styles";
+import ListUserPR from "../components/ListUserPR";
 
-export default styled.div`
-  width: 100%;
-  padding: 10px 20px;
-  background: #fff;
-  min-height: 50px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 2px 2px 0px 0px ${styles.colors.cyan};
-  overflow: hidden;
-  margin-bottom: 10px;
-  color: ${styles.colors.crimson};
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-  text-shadow: 2px 2px 0px #01ffff69;
-  transition: all 0.3s ease;
 
-  &:last-of-type {
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-  }
-
+const UserCard = styled.div`
   img {
     width: 70px;
     border-radius: 50%;
@@ -135,3 +116,52 @@ export default styled.div`
     }
   }
 `;
+
+class UserCardWrapper extends React.Component {
+    constructor(props) {
+      super(props);
+
+      this.state = {
+        showList: false
+      }
+    }
+    static Wrapper = styled.div`
+    box-shadow: 2px 2px 0px 0px ${styles.colors.cyan};
+    overflow: hidden;
+    margin-bottom: 10px;
+    color: ${styles.colors.crimson};
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    text-shadow: 2px 2px 0px #01ffff69;
+    transition: all 0.3s ease;
+  
+    &:last-of-type {
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+    `;
+
+    onClick = (event) => {
+      this.setState(prevState => ({ showListPR: !prevState.showListPR }), () => console.log(this.state.showListPR))
+    }
+    
+    render() {
+        console.log({ props: this.props.userPR })
+        const { userPR, children } = this.props;
+        const { Wrapper } = ListUserPR;
+
+        return (
+            <Wrapper onClick={this.onClick}>
+              <UserCard>
+                {children}
+              </UserCard>
+              {this.state.showListPR && (
+                <ListUserPR userPR={userPR} />
+              )}
+            </Wrapper>
+        );
+    }
+}
+
+export default UserCardWrapper;
+

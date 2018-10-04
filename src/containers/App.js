@@ -123,7 +123,7 @@ class App extends Component {
       }, 1000);
     }
     this.setState({ time: out });
-}
+  }
 
   render() {
     return (
@@ -148,7 +148,7 @@ class App extends Component {
                     <div>
                       {this.transformPullRequests(data).map((user, i) => (
                         <FadeUp style={{ width: "100%" }} delay={i * 100}>
-                          <UserCard key={i}>
+                          <UserCard key={i} userPR={user.pullRequests}>
                             <div className="__user--detail">
                               <h1>{user.pullRequests.length ? i + 1 : "-"}</h1>
                               <img src={user.avatarUrl} alt="" />
