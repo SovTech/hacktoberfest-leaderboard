@@ -15,6 +15,8 @@ import ErrorWrapper from "../components/ErrorWrapper";
 
 const loaderAnim = require("../consts/lottie/loader.json");
 
+const packageJson = require("../../package.json");
+
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Roboto+Mono|Rubik:400,700,900');
 
@@ -53,7 +55,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      time: ''
+      time: '',
+      version: packageJson.version
     };
     this.GetCount = this.GetCount.bind(this);
   }
@@ -136,6 +139,7 @@ class App extends Component {
                 <SovtechLogo />
                 <h1>Hacktoberfest 2018 Leaderboard</h1>
                 <h3>{this.state.time}</h3>
+                <h4>Version: {this.state.version}</h4>
               </Banner>
               <Query query={GET_USERS}>
                 {({ loading, error, data }) => {
