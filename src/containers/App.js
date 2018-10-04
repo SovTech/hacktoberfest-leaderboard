@@ -152,7 +152,7 @@ class App extends Component {
                             <div className="__user--detail">
                               <h1>{user.pullRequests.length ? i + 1 : "-"}</h1>
                               <img src={user.avatarUrl} alt="" />
-                              <h3>{user.login}</h3>
+                              <h3><a href={'https://github.com/' + user.login} target='_blank' alt={'github user' + user.login}></a>{user.login}</h3>
                             </div>
                             <div className="__score-cont">
                               <div className="__score">
