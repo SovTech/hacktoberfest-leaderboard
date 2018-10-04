@@ -135,7 +135,7 @@ class App extends Component {
             <Leaderboard>
               <Banner>
                 <SovtechLogo />
-                <h1>Hacktoberfest 2018 Leaderboard {PackageJson.version}<small></small></h1>
+                <h1>Hacktoberfest 2018 Leaderboard <small>{PackageJson.version}</small></h1>
                 <h3>{this.state.time}</h3>
               </Banner>
               <Query query={GET_USERS}>
