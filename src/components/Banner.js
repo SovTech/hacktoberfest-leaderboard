@@ -14,16 +14,24 @@ export default styled.div`
   border-top-right-radius: 4px;
   box-shadow: 2px 2px 0px 0px ${styles.colors.cyan};
   margin-bottom: 10px;
-  h1 {
+  h1, h3 {
     font-size: 1.4rem;
     text-shadow: 2px 2px 0px #01ffff69;
     text-transform: uppercase;
     margin-top: 40px;
   }
 
+  h3 {
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+
   @media (max-width: 1200px) {
     h1 {
       font-size: 1rem;
+    }
+    h3 {
+      font-size: 0.7rem;
     }
   }
 
