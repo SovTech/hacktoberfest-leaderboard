@@ -9,7 +9,11 @@ import FadeUp from "../components/FadeUp";
 import Leaderboard from "../components/Leaderboard";
 import UserCard from "../components/UserCard";
 import Banner from "../components/Banner";
+import LottieWrapper from "../components/LottieWrapper";
 import SovtechLogo from "../components/SovtechLogo";
+import ErrorWrapper from "../components/ErrorWrapper";
+
+const loaderAnim = require("../consts/lottie/loader.json");
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Roboto+Mono|Rubik:400,700,900');
@@ -25,8 +29,8 @@ const GlobalStyle = createGlobalStyle`
 
   .sticky{
     position: -webkit-sticky;
-  position: sticky;
-  top:0;
+    position: sticky;
+    top:0;
   }
 `;
 
@@ -80,8 +84,11 @@ class App extends Component {
               </Banner>
               <Query query={GET_USERS}>
                 {({ loading, error, data }) => {
-                  if (loading) return "Loading...";
-                  if (error) return `Error! ${error.message}`;
+                  if (loading) return <LottieWrapper loop anim={loaderAnim} />;
+                  if (error)
+                    return (
+                      <ErrorWrapper loop text={`Error! ${error.message}`} />
+                    );
                   return (
                     <div>
                       {this.transformPullRequests(data).map((user, i) => (
