@@ -47,6 +47,10 @@ export default styled.div`
       text-transform: lowercase;
       text-shadow: none;
       text-shadow: 2px 2px 0px #01ffff69;
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
     }
   }
 
