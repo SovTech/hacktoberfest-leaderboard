@@ -12,6 +12,7 @@ import Banner from "../components/Banner";
 import LottieWrapper from "../components/LottieWrapper";
 import SovtechLogo from "../components/SovtechLogo";
 import ErrorWrapper from "../components/ErrorWrapper";
+import PackageJson from "../../package.json";
 import GithubCorner from "react-github-corner";
 
 const loaderAnim = require("../consts/lottie/loader.json");
@@ -135,7 +136,7 @@ class App extends Component {
             <Leaderboard>
               <Banner>
                 <SovtechLogo />
-                <h1>Hacktoberfest 2018 Leaderboard</h1>
+                <h1>Hacktoberfest 2018 Leaderboard <small>{PackageJson.version}</small></h1>
                 <h3>{this.state.time}</h3>
               </Banner>
               <GithubCorner href="https://github.com/SovTech/hacktoberfest-leaderboard" />
