@@ -1,29 +1,20 @@
+import * as React from 'react';
+import PropTypes from 'prop-types';
 import styled from "styled-components";
 import styles from "../styles";
+import ListUserPR from "../components/ListUserPR";
 
-export default styled.div`
+
+const UserCard = styled.div`
   width: 100%;
-  padding: 10px 20px;
-  background: #fff;
-  min-height: 50px;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   align-items: center;
-  box-shadow: 2px 2px 0px 0px ${styles.colors.cyan};
-  overflow: hidden;
-  margin-bottom: 10px;
-  color: ${styles.colors.crimson};
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-  text-shadow: 2px 2px 0px #01ffff69;
-  transition: all 0.3s ease;
 
   &:last-of-type {
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
   }
-
+  
   img {
     width: 70px;
     border-radius: 50%;
@@ -79,18 +70,6 @@ export default styled.div`
     }
   }
 
-  &:hover {
-    cursor: pointer;
-    box-shadow: 0px 3px 0px 0px ${styles.colors.cyan};
-    transform: scale(1.01);
-
-    .__score {
-      .__label {
-        opacity: 1;
-      }
-    }
-  }
-
   @media (max-width: 600px) {
     flex-direction: column;
 
@@ -139,3 +118,72 @@ export default styled.div`
     }
   }
 `;
+
+class UserCardWrapper extends React.Component {
+    constructor(props) {
+      super(props);
+
+      this.state = {
+        showList: false
+      }
+    }
+
+    static Wrapper = styled.div`
+      width: 100%;
+      padding: 10px 20px;	
+      min-height: 50px;
+      margin-bottom: 10px;
+      box-shadow: 2px 2px 0px 0px ${styles.colors.cyan};
+      overflow: hidden;
+      color: ${styles.colors.crimson};
+      text-shadow: 2px 2px 0px #01ffff69;
+      transition: all 0.3s ease;
+      background-color: #fff;
+
+      &:last-of-type {
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+      }
+  
+      &:hover {
+        cursor: pointer;
+        box-shadow: 0px 3px 0px 0px ${styles.colors.cyan};
+        transform: scale(1.01);
+    
+        .__score {
+          .__label {
+            opacity: 1;
+          }
+        }
+      }
+    `;
+
+    onClick = () => this.setState(prevState => ({ showListPR: !prevState.showListPR }));
+    
+    onLeave = () => this.setState({ showListPR: false });
+    
+    render() {
+        console.log({ props: this.props.userPR })
+        const { userPR, children } = this.props;
+        const { Wrapper } = UserCardWrapper;
+
+        return (
+            <Wrapper onClick={this.onClick} onMouseLeave={this.onLeave}>
+              <UserCard>
+                {children}
+              </UserCard>
+              {this.state.showListPR && (
+                <ListUserPR userPR={userPR} />
+              )}
+            </Wrapper>
+        );
+    }
+}
+
+
+UserCardWrapper.propTypes = {
+  userPR: PropTypes.object
+};
+
+export default UserCardWrapper;
+
