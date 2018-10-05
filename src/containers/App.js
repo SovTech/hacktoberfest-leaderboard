@@ -13,9 +13,12 @@ import LottieWrapper from "../components/LottieWrapper";
 import SovtechLogo from "../components/SovtechLogo";
 import ErrorWrapper from "../components/ErrorWrapper";
 import Timer from '../components/Timer';
+import packagejson from "../../package.json";
 import GithubCorner from "react-github-corner";
 
 const loaderAnim = require("../consts/lottie/loader.json");
+
+const VERSION = packagejson.version;
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Roboto+Mono|Rubik:400,700,900');
@@ -33,6 +36,10 @@ const GlobalStyle = createGlobalStyle`
     position: -webkit-sticky;
     position: sticky;
     top:0;
+  }
+
+  #version {
+    color: white;
   }
 `;
 
@@ -73,6 +80,7 @@ class App extends Component {
       });
   }
 
+
   render() {
     return (
       <ApolloProvider client={client}>
@@ -101,7 +109,7 @@ class App extends Component {
                             <div className="__user--detail">
                               <h1>{user.pullRequests.length ? i + 1 : "-"}</h1>
                               <img src={user.avatarUrl} alt="" />
-                              <h3><a href={'https://github.com/' + user.login} target='_blank' alt={'github user' + user.login}></a>{user.login}</h3>
+                              <h3><a href={'https://github.com/' + user.login} target='_blank' alt={'github user' + user.login}>{user.login}</a></h3>
                             </div>
                             <div className="__score-cont">
                               <div className="__score">
@@ -124,6 +132,7 @@ class App extends Component {
                           </UserCard>
                         </FadeUp>
                       ))}
+                      <small id="version">v{VERSION}</small>
                     </div>
                   );
                 }}
