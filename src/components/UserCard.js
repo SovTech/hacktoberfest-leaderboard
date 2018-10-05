@@ -8,6 +8,7 @@ import ListUserPR from "../components/ListUserPR";
 const UserCard = styled.div`
   width: 100%;
   display: flex;
+  align-items: center;
 
   &:last-of-type {
     border-bottom-left-radius: 4px;
@@ -125,9 +126,9 @@ class UserCardWrapper extends React.Component {
 
     static Wrapper = styled.div`
       width: 100%;
-      padding: 15px;
+      padding: 10px 20px;	
+      min-height: 50px;
       margin-bottom: 10px;
-
       box-shadow: 2px 2px 0px 0px ${styles.colors.cyan};
       overflow: hidden;
       color: ${styles.colors.crimson};
@@ -140,7 +141,6 @@ class UserCardWrapper extends React.Component {
         border-bottom-right-radius: 4px;
       }
   
-
       &:hover {
         cursor: pointer;
         box-shadow: 0px 3px 0px 0px ${styles.colors.cyan};
