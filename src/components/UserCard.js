@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import styled from "styled-components";
 import styles from "../styles";
 import ListUserPR from "../components/ListUserPR";
@@ -7,6 +8,11 @@ import ListUserPR from "../components/ListUserPR";
 const UserCard = styled.div`
   width: 100%;
   display: flex;
+
+  &:last-of-type {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
   
   img {
     width: 70px;
@@ -119,7 +125,7 @@ class UserCardWrapper extends React.Component {
 
     static Wrapper = styled.div`
       width: 100%;
-      padding: 30px;
+      padding: 15px;
       margin-bottom: 10px;
 
       box-shadow: 2px 2px 0px 0px ${styles.colors.cyan};
@@ -128,11 +134,12 @@ class UserCardWrapper extends React.Component {
       text-shadow: 2px 2px 0px #01ffff69;
       transition: all 0.3s ease;
       background-color: #fff;
-    
+
       &:last-of-type {
         border-bottom-left-radius: 4px;
         border-bottom-right-radius: 4px;
       }
+  
 
       &:hover {
         cursor: pointer;
@@ -147,9 +154,9 @@ class UserCardWrapper extends React.Component {
       }
     `;
 
-    onClick = (event) => {
-      this.setState(prevState => ({ showListPR: !prevState.showListPR }), () => console.log(this.state.showListPR))
-    }
+    onClick = () => this.setState(prevState => ({ showListPR: !prevState.showListPR }));
+    
+    onLeave = () => this.setState({ showListPR: false });
     
     render() {
         console.log({ props: this.props.userPR })
@@ -157,7 +164,7 @@ class UserCardWrapper extends React.Component {
         const { Wrapper } = UserCardWrapper;
 
         return (
-            <Wrapper onClick={this.onClick}>
+            <Wrapper onClick={this.onClick} onMouseLeave={this.onLeave}>
               <UserCard>
                 {children}
               </UserCard>
@@ -168,6 +175,11 @@ class UserCardWrapper extends React.Component {
         );
     }
 }
+
+
+UserCardWrapper.propTypes = {
+  userPR: PropTypes.object
+};
 
 export default UserCardWrapper;
 
