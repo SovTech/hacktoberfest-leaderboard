@@ -5,6 +5,9 @@ import ListUserPR from "../components/ListUserPR";
 
 
 const UserCard = styled.div`
+  width: 100%;
+  display: flex;
+  
   img {
     width: 70px;
     border-radius: 50%;
@@ -53,18 +56,6 @@ const UserCard = styled.div`
       font-size: 0.8rem;
       text-shadow: none;
       transition: all 0.3s ease;
-    }
-  }
-
-  &:hover {
-    cursor: pointer;
-    box-shadow: 0px 3px 0px 0px ${styles.colors.cyan};
-    transform: scale(1.01);
-
-    .__score {
-      .__label {
-        opacity: 1;
-      }
     }
   }
 
@@ -125,20 +116,35 @@ class UserCardWrapper extends React.Component {
         showList: false
       }
     }
+
     static Wrapper = styled.div`
-    box-shadow: 2px 2px 0px 0px ${styles.colors.cyan};
-    overflow: hidden;
-    margin-bottom: 10px;
-    color: ${styles.colors.crimson};
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    text-shadow: 2px 2px 0px #01ffff69;
-    transition: all 0.3s ease;
-  
-    &:last-of-type {
-      border-bottom-left-radius: 4px;
-      border-bottom-right-radius: 4px;
-    }
+      width: 100%;
+      padding: 30px;
+      margin-bottom: 10px;
+
+      box-shadow: 2px 2px 0px 0px ${styles.colors.cyan};
+      overflow: hidden;
+      color: ${styles.colors.crimson};
+      text-shadow: 2px 2px 0px #01ffff69;
+      transition: all 0.3s ease;
+      background-color: #fff;
+    
+      &:last-of-type {
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+      }
+
+      &:hover {
+        cursor: pointer;
+        box-shadow: 0px 3px 0px 0px ${styles.colors.cyan};
+        transform: scale(1.01);
+    
+        .__score {
+          .__label {
+            opacity: 1;
+          }
+        }
+      }
     `;
 
     onClick = (event) => {
@@ -148,7 +154,7 @@ class UserCardWrapper extends React.Component {
     render() {
         console.log({ props: this.props.userPR })
         const { userPR, children } = this.props;
-        const { Wrapper } = ListUserPR;
+        const { Wrapper } = UserCardWrapper;
 
         return (
             <Wrapper onClick={this.onClick}>

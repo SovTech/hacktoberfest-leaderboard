@@ -4,15 +4,14 @@ import styled from "styled-components";
 
 
 class ListUserPR extends React.Component {
-    static Wrapper = styled.div`
+    static Wrapper = styled.ul`⏳
         width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 30px;
         flex-direction: column;
-        box-sizing: border-box;
         background-color: #fff;
+        color: black;
     `;
 
     render() {
@@ -22,11 +21,20 @@ class ListUserPR extends React.Component {
 
         return (
             <Wrapper>
-                {userPR.forEach((item, index) => {
-                    console.log(item.repository.name)
+                {userPR.map((item, index) => {
+                    console.log({ item })
                     return (
-                        <span key={index}>{item.repository.name}bla</span>
-                    )
+                        <React.Fragment>
+                            <li key={`${index}${item.id}`}>
+                                <p>{item.repository.name}</p>
+                                {item.closed ? (
+                                    <span>Finish ✅</span>
+                                ) : (
+                                    <span>In progress ⏳</span>
+                                )}
+                            </li>          
+                        </React.Fragment>
+                    );
                 })}
             </Wrapper>
         );
