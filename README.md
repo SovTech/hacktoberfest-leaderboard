@@ -39,6 +39,7 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout fake.key -out fake.c
 
 * **Andre Hofmeister** - *Updated README.md with basic information* - [padme-amidala](https://github.com/padme-amidala/)
 * **Marcos Ibanez** - *Added local SSL info to README.md, added Github Ribbon* - [mgi1982](https://github.com/mgi1982/)
+* **Alban Suchaire** - *Added list of users PR's, some changes to prevent useless render of <App />* - [Banb4n](https://github.com/Banb4n/)
 
 ## Deployment
 
