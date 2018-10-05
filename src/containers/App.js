@@ -12,9 +12,12 @@ import Banner from "../components/Banner";
 import LottieWrapper from "../components/LottieWrapper";
 import SovtechLogo from "../components/SovtechLogo";
 import ErrorWrapper from "../components/ErrorWrapper";
+import packagejson from "../../package.json";
 import GithubCorner from "react-github-corner";
 
 const loaderAnim = require("../consts/lottie/loader.json");
+
+const VERSION = packagejson.version;
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Roboto+Mono|Rubik:400,700,900');
@@ -33,6 +36,10 @@ const GlobalStyle = createGlobalStyle`
     position: sticky;
     top:0;
   }
+
+  #version {
+    color: white;
+  }
 `;
 
 const GET_USERS = gql`
@@ -47,7 +54,7 @@ const GET_USERS = gql`
     }
   }
 `;
-const dateFuture = new Date(2018,9,31,23,59,59);
+const dateFuture = new Date(2018, 9, 31, 23, 59, 59);
 
 class App extends Component {
 
@@ -101,22 +108,22 @@ class App extends Component {
       let mins = 0;
       let secs = 0;
 
-      amount = Math.floor(amount/1000);                 // kill the "milliseconds" so just secs
+      amount = Math.floor(amount / 1000);                 // kill the "milliseconds" so just secs
 
-      days=Math.floor(amount/86400);                    // days
-      amount=amount%86400;
+      days = Math.floor(amount / 86400);                    // days
+      amount = amount % 86400;
 
-      hours=Math.floor(amount/3600);                    // hours
-      amount=amount%3600;
+      hours = Math.floor(amount / 3600);                    // hours
+      amount = amount % 3600;
 
-      mins=Math.floor(amount/60);                       // minutes
-      amount=amount%60;
+      mins = Math.floor(amount / 60);                       // minutes
+      amount = amount % 60;
 
-      secs=Math.floor(amount);                          // seconds
+      secs = Math.floor(amount);                          // seconds
 
-      if(days !== 0){out += days +" day"+((days!==1)?"s":"")+", ";}
-      if(days !== 0 || hours !== 0){out += hours +" hour"+((hours!==1)?"s":"")+", ";}
-      if(days !== 0 || hours !== 0 || mins !== 0){out += mins +" minute"+((mins!==1)?"s":"")+", ";}
+      if (days !== 0) { out += days + " day" + ((days !== 1) ? "s" : "") + ", "; }
+      if (days !== 0 || hours !== 0) { out += hours + " hour" + ((hours !== 1) ? "s" : "") + ", "; }
+      if (days !== 0 || hours !== 0 || mins !== 0) { out += mins + " minute" + ((mins !== 1) ? "s" : "") + ", "; }
       out += secs + " seconds";
 
       setTimeout(() => {
@@ -124,7 +131,7 @@ class App extends Component {
       }, 1000);
     }
     this.setState({ time: out });
-}
+  }
 
   render() {
     return (
@@ -177,6 +184,7 @@ class App extends Component {
                           </UserCard>
                         </FadeUp>
                       ))}
+                      <small id="version">v{VERSION}</small>
                     </div>
                   );
                 }}
